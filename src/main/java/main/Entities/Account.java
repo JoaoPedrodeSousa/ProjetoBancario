@@ -8,10 +8,20 @@ public class Account implements IOperationsAccount{
     private final String register;
     private Integer balance;
 
-    public Account(String owner, Integer balance) {
+    public Account(String owner, String register) {
         this.owner = owner;
-        this.register = generateRegister();
+        this.register = register;
+    }
+
+    public Account(String owner, String register, Integer balance) {
+        this.owner = owner;
         this.balance = balance;
+        if(register.length() > 10 || register.length() < 10){
+            throw new RuntimeException();
+        }
+        else {
+            this.register = register;
+        }
     }
 
     public String getOwner() {
@@ -30,16 +40,6 @@ public class Account implements IOperationsAccount{
         return balance;
     }
 
-    private String generateRegister() {
-        String result = null;
-
-        for(int i=0;i<10;i++){
-            result += String
-                    .valueOf(new Random().nextInt(10));;
-        }
-
-        return result;
-    }
 
     @Override
     public void withdraw(Integer value) {
