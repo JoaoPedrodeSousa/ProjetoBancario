@@ -1,16 +1,19 @@
 package main.Entities;
 
-import java.util.Random;
 
-public class Account implements IOperationsAccount{
-    private Integer id;
+import java.io.Serializable;
+import java.util.Objects;
+
+public class Account implements IOperationsAccount, Serializable {
+    private static final long serialVersionUID = 1L;
+    private Integer id = null;
     private String owner;
     private final String register;
-    private Integer balance = 0;
+    private Double balance = 0.0;
 
     public Account(String owner, String register) {
         this.owner = owner;
-        if(register.length() > 10 || register.length() < 10){
+        if(register.length() != 10){
             throw new RuntimeException();
         }
 
@@ -19,10 +22,10 @@ public class Account implements IOperationsAccount{
         }
     }
 
-    public Account(String owner, String register, Integer balance) {
+    public Account(String owner, String register, Double balance) {
         this.owner = owner;
         this.balance = balance;
-        if(register.length() > 10 || register.length() < 10){
+        if(register.length() != 10){
             throw new RuntimeException();
         }
 
@@ -51,18 +54,41 @@ public class Account implements IOperationsAccount{
         return register;
     }
 
-    public Integer getBalance() {
+    public Double getBalance() {
         return balance;
     }
 
 
     @Override
-    public void withdraw(Integer value) {
+    public void withdraw(Double value) {
         balance -= value;
     }
 
     @Override
-    public void Deposit(Integer value) {
+    public void Deposit(Double value) {
         balance += value;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Account)) return false;
+        Account account = (Account) o;
+        return Objects.equals(getId(), account.getId()) && Objects.equals(getOwner(), account.getOwner()) && Objects.equals(getRegister(), account.getRegister()) && Objects.equals(getBalance(), account.getBalance());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getOwner(), getRegister(), getBalance());
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", owner='" + owner + '\'' +
+                ", register='" + register + '\'' +
+                ", balance=" + balance +
+                '}';
     }
 }
