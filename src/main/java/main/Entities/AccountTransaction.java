@@ -1,29 +1,32 @@
 package main.Entities;
 
 import dao.AccountDao;
+import main.services.db.DB;
+import main.services.db.DbException;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class AccountTransaction implements Transaction{
+public class AccountTransaction {
 
-    private final Connection conn;
-    public AccountTransaction(Connection conn, AccountDao accountDao, IOperationsAccount from, IOperationsAccount to, Double value) {
-        this.conn = conn;
-        transfer(accountDao, from, to, value);
-    }
+    private static final Connection conn = DB.getConnection();
 
-    @Override
-    public void transfer(AccountDao accountDao, IOperationsAccount from, IOperationsAccount to, Double value) {
+    public static void transfer(AccountDao accountDao, Account from, Account to, Double value) {
+        if (value > from.getBalance()){
+            throw new DbException("Nao eh possivel transerir esse valor, pois eh maior que o saldo disponivel do cliente!");
+        }
+
         try {
             conn.setAutoCommit(false);
+
             from.withdraw(value);
-            to.Deposit(value);
-            accountDao.update((Account) from);
-            accountDao.update((Account) to);
+            to.deposit(value);
+            accountDao.update(from);
+            accountDao.update(to);
 
             conn.commit();
         }
+
         catch (SQLException e){
 
            try {

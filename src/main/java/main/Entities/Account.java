@@ -25,10 +25,10 @@ public class Account implements IOperationsAccount, Serializable {
     public Account(String owner, String register, Double balance) {
         this.owner = owner;
         this.balance = balance;
+
         if(register.length() != 10){
             throw new RuntimeException();
         }
-
         else {
             this.register = register;
         }
@@ -58,6 +58,9 @@ public class Account implements IOperationsAccount, Serializable {
         return balance;
     }
 
+    public void setBalance(Double balance) {
+        this.balance = balance;
+    }
 
     @Override
     public void withdraw(Double value) {
@@ -65,7 +68,7 @@ public class Account implements IOperationsAccount, Serializable {
     }
 
     @Override
-    public void Deposit(Double value) {
+    public void deposit(Double value) {
         balance += value;
     }
 
