@@ -112,7 +112,7 @@ public class AccountJDBC implements AccountDao {
     }
 
     @Override
-    public Account findByOwner(String owner) {
+    public Account findByOwner (String owner) {
         PreparedStatement st = null;
         ResultSet rs = null;
 

@@ -1,18 +1,20 @@
 package main.Entities;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Objects;
 
-public abstract class log {
+public abstract class Log implements ILog{
     private Integer id = null;
 
+    private Date date;
+
     private String tipo;
-    private LocalDate date = LocalDate.now();
+
     private Double valor;
 
-    public log(String tipo, LocalDate date, Double valor) {
+    public Log(String tipo, Double valor) {
         this.tipo = tipo;
-        this.date = date;
         this.valor = valor;
     }
 
@@ -32,11 +34,11 @@ public abstract class log {
         this.tipo = tipo;
     }
 
-    public LocalDate getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -51,8 +53,8 @@ public abstract class log {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof log)) return false;
-        log log = (log) o;
+        if (!(o instanceof Log)) return false;
+        Log log = (Log) o;
         return Objects.equals(getId(), log.getId()) && Objects.equals(getTipo(), log.getTipo()) && Objects.equals(getDate(), log.getDate()) && Objects.equals(getValor(), log.getValor());
     }
 
