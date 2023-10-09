@@ -1,7 +1,7 @@
 import model.Entities.impl.Account;
 import model.Entities.impl.OperationsAccount;
 import model.services.dao.impl.AccountJDBC;
-import model.services.dao.impl.LogTransactionJDBC;
+import model.services.dao.impl.LogTransferJDBC;
 import model.services.database.DB;
 import java.sql.Connection;
 
@@ -30,11 +30,11 @@ public class Program {
         System.out.println(acc3);
         System.out.println(acc4);
 
-        LogTransactionJDBC logTransactionJDBC = new LogTransactionJDBC(pg,acc1,acc2);
-        LogTransactionJDBC logTransactionJDBC2 = new LogTransactionJDBC(pg,acc3,acc4);
+        LogTransferJDBC logTransferJDBC = new LogTransferJDBC(pg,acc1,acc2);
+        LogTransferJDBC logTransferJDBC2 = new LogTransferJDBC(pg,acc3,acc4);
 
-        OperationsAccount.transfer(logTransactionJDBC, accountJDBC, acc1, acc2, 300.0);
-        OperationsAccount.transfer(logTransactionJDBC2, accountJDBC, acc3, acc4, 300.0);
+        OperationsAccount.transfer(logTransferJDBC, accountJDBC, acc1, acc2, 300.0);
+        OperationsAccount.transfer(logTransferJDBC2, accountJDBC, acc3, acc4, 300.0);
 
         System.out.println(acc1);
         System.out.println(acc2);

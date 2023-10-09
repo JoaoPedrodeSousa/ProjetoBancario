@@ -3,19 +3,19 @@ package model.services.dao.impl;
 import model.Entities.impl.Account;
 import model.Entities.impl.Log;
 import model.Entities.impl.LogTransactions;
-import model.services.dao.ILogOperationsDao;
+import model.services.dao.ILogTransferDao;
 import model.services.database.DB;
 import model.services.database.DbException;
 
 import java.sql.*;
 
-public class LogTransactionJDBC implements ILogOperationsDao {
+public class LogTransferJDBC implements ILogTransferDao {
 
     private Connection conn;
     private Account acc1;
     private Account acc2;
 
-    public LogTransactionJDBC(Connection conn, Account acc1, Account acc2) {
+    public LogTransferJDBC(Connection conn, Account acc1, Account acc2) {
         this.conn = conn;
         this.acc1 = acc1;
         this.acc2 = acc2;

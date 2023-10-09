@@ -1,7 +1,7 @@
 package model.Entities.impl;
 
 import model.services.dao.AccountDao;
-import model.services.dao.ILogOperationsDao;
+import model.services.dao.ILogTransferDao;
 import model.services.database.DB;
 import model.services.database.DbException;
 
@@ -12,7 +12,7 @@ public class OperationsAccount {
 
     private static final Connection conn = DB.getConnection();
 
-    public static void transfer(ILogOperationsDao logTransactionDao, AccountDao accountDao, Account from, Account to, Double value) {
+    public static void transfer(ILogTransferDao logTransactionDao, AccountDao accountDao, Account from, Account to, Double value) {
         if (value > from.getBalance()){
             throw new DbException("Nao eh possivel transerir esse valor, pois eh maior que o saldo disponivel do cliente!");
         }
