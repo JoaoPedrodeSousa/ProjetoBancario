@@ -1,4 +1,4 @@
-package main.Entities;
+package model.Entities;
 
 public interface IOperationsAccount {
 

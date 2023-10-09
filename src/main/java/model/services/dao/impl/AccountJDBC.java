@@ -1,9 +1,9 @@
-package dao.impl;
+package model.services.dao.impl;
 
-import dao.AccountDao;
-import main.Entities.Account;
-import main.services.db.DB;
-import main.services.db.DbException;
+import model.Entities.impl.Account;
+import model.services.dao.AccountDao;
+import model.services.database.DB;
+import model.services.database.DbException;
 
 import java.sql.*;
 
@@ -99,7 +99,7 @@ public class AccountJDBC implements AccountDao {
             rs = st.executeQuery();
 
             if (rs.next()) {
-                Account acc = new Account(rs.getString(4), rs.getString(2), rs.getDouble(3));
+                Account acc = new Account(rs.getInt(1),rs.getString(4), rs.getString(2), rs.getDouble(3));
                 return acc;
             }
             return null;

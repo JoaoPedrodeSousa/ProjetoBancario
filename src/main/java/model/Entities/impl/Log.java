@@ -1,10 +1,11 @@
-package main.Entities;
+package model.Entities.impl;
 
-import java.time.LocalDate;
+import model.Entities.ILog;
+
 import java.util.Date;
 import java.util.Objects;
 
-public abstract class Log implements ILog{
+public abstract class Log implements ILog {
     private Integer id = null;
 
     private Date date;
@@ -16,6 +17,25 @@ public abstract class Log implements ILog{
     public Log(String tipo, Double valor) {
         this.tipo = tipo;
         this.valor = valor;
+    }
+
+    public Log(String tipo, Double valor, Date date) {
+        this.tipo = tipo;
+        this.valor = valor;
+        this.date = date;
+    }
+
+    public Log(Integer id, String tipo, Double valor) {
+        this.id = id;
+        this.tipo = tipo;
+        this.valor = valor;
+    }
+
+    public Log(Integer id, String tipo, Double valor, Date date) {
+        this.id = id;
+        this.tipo = tipo;
+        this.valor = valor;
+        this.date = date;
     }
 
     public Integer getId() {

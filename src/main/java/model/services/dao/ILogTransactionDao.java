@@ -1,7 +1,7 @@
-package dao;
+package model.services.dao;
 
-import main.Entities.ILog;
-import main.Entities.Log;
+import model.Entities.impl.Account;
+import model.Entities.impl.Log;
 
 public interface ILogTransactionDao {
     void insert(Log log);

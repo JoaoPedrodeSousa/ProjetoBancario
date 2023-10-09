@@ -1,4 +1,4 @@
-package main.services.db;
+package model.services.database;
 
 public class DbException extends RuntimeException {
     private static final long serialVersionUID = 1L;

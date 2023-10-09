@@ -1,8 +1,9 @@
-package main.Entities;
+package model.Entities.impl;
 
-import dao.AccountDao;
-import main.services.db.DB;
-import main.services.db.DbException;
+import model.services.dao.AccountDao;
+import model.services.dao.ILogTransactionDao;
+import model.services.database.DB;
+import model.services.database.DbException;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -11,7 +12,7 @@ public class AccountTransaction {
 
     private static final Connection conn = DB.getConnection();
 
-    public static void transfer(AccountDao accountDao, Account from, Account to, Double value) {
+    public static void transfer(ILogTransactionDao logTransactionDao, AccountDao accountDao, Account from, Account to, Double value) {
         if (value > from.getBalance()){
             throw new DbException("Nao eh possivel transerir esse valor, pois eh maior que o saldo disponivel do cliente!");
         }
@@ -21,24 +22,22 @@ public class AccountTransaction {
 
             from.withdraw(value);
             to.deposit(value);
+
             accountDao.update(from);
             accountDao.update(to);
 
+            Log log = new LogTransactions(null,"Transferencia",value, from.getId(), to.getId());
+            logTransactionDao.insert(log);
+
             conn.commit();
         }
-
         catch (SQLException e){
-
-           try {
+            try {
                 conn.rollback();
             }
-
             catch (SQLException ex) {
-                throw new RuntimeException(ex);
+                throw new DbException(ex.getMessage());
             }
-           finally {
-               e.getStackTrace();
-           }
         }
     }
 }

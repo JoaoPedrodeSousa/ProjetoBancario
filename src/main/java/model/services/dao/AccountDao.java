@@ -1,8 +1,6 @@
-package dao;
+package model.services.dao;
 
-import main.Entities.Account;
-
-import java.util.List;
+import model.Entities.impl.Account;
 
 public interface AccountDao {
     void insert(Account obj);

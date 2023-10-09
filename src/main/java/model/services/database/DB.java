@@ -1,4 +1,4 @@
-package main.services.db;
+package model.services.database;
 
 import java.io.FileInputStream;
 import java.io.IOException;

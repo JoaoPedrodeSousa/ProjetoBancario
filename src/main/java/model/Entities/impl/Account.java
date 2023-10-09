@@ -1,5 +1,7 @@
-package main.Entities;
+package model.Entities.impl;
 
+
+import model.Entities.IOperationsAccount;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -22,7 +24,33 @@ public class Account implements IOperationsAccount, Serializable {
         }
     }
 
+    public Account(Integer id, String owner, String register) {
+        this.id = id;
+        this.owner = owner;
+
+        if(register.length() != 10){
+            throw new RuntimeException();
+        }
+
+        else {
+            this.register = register;
+        }
+    }
+
     public Account(String owner, String register, Double balance) {
+        this.owner = owner;
+        this.balance = balance;
+
+        if(register.length() != 10){
+            throw new RuntimeException();
+        }
+        else {
+            this.register = register;
+        }
+    }
+
+    public Account(Integer id, String owner, String register, Double balance) {
+        this.id = id;
         this.owner = owner;
         this.balance = balance;
 

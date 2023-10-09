@@ -1,4 +1,4 @@
-package main.services.db;
+package model.services.database;
 
 public class DbIntegrityException extends RuntimeException{
     public static final long serialVersionUID = 1L;
