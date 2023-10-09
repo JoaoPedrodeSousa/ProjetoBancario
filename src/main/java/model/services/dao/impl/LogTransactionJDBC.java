@@ -3,13 +3,13 @@ package model.services.dao.impl;
 import model.Entities.impl.Account;
 import model.Entities.impl.Log;
 import model.Entities.impl.LogTransactions;
-import model.services.dao.ILogTransactionDao;
+import model.services.dao.ILogOperationsDao;
 import model.services.database.DB;
 import model.services.database.DbException;
 
 import java.sql.*;
 
-public class LogTransactionJDBC implements ILogTransactionDao {
+public class LogTransactionJDBC implements ILogOperationsDao {
 
     private Connection conn;
     private Account acc1;
