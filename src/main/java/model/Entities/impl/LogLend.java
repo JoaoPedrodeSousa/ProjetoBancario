@@ -13,6 +13,22 @@ public class LogLend implements IInterestOperations {
     private String status;
     private String type;
 
+    public LogLend(Integer id, Double valueLend, Double interest, Integer term, String type) {
+        this.id = id;
+        this.valueLend = valueLend;
+        this.interest = interest;
+        this.term = term;
+        this.type = type;
+    }
+
+    public LogLend(Integer id, Double valueLend, Double interest, Integer term, String status, String type) {
+        this.id = id;
+        this.valueLend = valueLend;
+        this.interest = interest;
+        this.term = term;
+        this.status = status;
+        this.type = type;
+    }
     public LogLend(Integer id, Double valueLend, Double interest, Double tax, Integer term, String type) {
         this.id = id;
         this.valueLend = valueLend;
@@ -80,12 +96,12 @@ public class LogLend implements IInterestOperations {
         this.type = type;
     }
 
-    public Double compoundInterest() {
-        return IInterestOperations.super.compoundInterest(valueLend, term, tax);
+    public void compoundInterest() {
+        setInterest(IInterestOperations.super.compoundInterest(valueLend, term, tax));
     }
 
-    public Double simpleInterest() {
-        return IInterestOperations.super.simpleInterest(valueLend, term, tax);
+    public void simpleInterest() {
+        setInterest(IInterestOperations.super.simpleInterest(valueLend, term, tax));
     }
 
     @Override
