@@ -8,16 +8,48 @@ import java.util.Objects;
 public class LogLend extends Log implements IInterestOperations {
     private Integer idAccount;
     private Double interest;
-    private Integer term; //prazo
-    private final Double TAX = 1.05;
+    private Integer term;
     private String status;
+    private final Double TAX = 1.05;
 
     public LogLend(Integer idAccount, Double valueLend, Double interest, Integer term, String status, String InterestType){
         super(InterestType,valueLend);
+
         this.idAccount = idAccount;
-        this.interest =interest;
+        this.interest = interest;
         this.term = term;
         this.status = status;
+    }
+
+    public LogLend(Integer idAccount, Double valueLend, Double interest, Integer term, String status, String InterestType, Date date){
+        super(InterestType,valueLend);
+
+        this.idAccount = idAccount;
+        this.interest = interest;
+        this.term = term;
+        this.status = status;
+
+        setDate(date);
+    }
+
+    public LogLend(Integer id,Integer idAccount, Double valueLend, Double interest, Integer term, String status, String InterestType, Date date){
+        super(InterestType,valueLend);
+
+        this.setId(id);
+        this.idAccount = idAccount;
+        this.interest = interest;
+        this.term = term;
+        this.status = status;
+
+        setDate(date);
+    }
+
+    public Integer getIdAccount() {
+        return idAccount;
+    }
+
+    public void setIdAccount(Integer idAccount) {
+        this.idAccount = idAccount;
     }
 
     public Double getInterest() {

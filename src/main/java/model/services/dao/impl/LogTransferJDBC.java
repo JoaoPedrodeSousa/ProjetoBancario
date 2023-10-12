@@ -28,8 +28,8 @@ public class LogTransferJDBC implements ILogTransferDao {
             st = conn.prepareStatement("INSERT INTO transacoes(tipo,valor,conta_origem, conta_destino) " +
                                            "VALUES (?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 
-            st.setString(1,log.getTipo());
-            st.setDouble(2, log.getValor());
+            st.setString(1,log.getType());
+            st.setDouble(2, log.getValue());
             st.setInt(3, acc1.getId());
             st.setInt(4, acc2.getId());
 

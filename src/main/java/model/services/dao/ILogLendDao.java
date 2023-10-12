@@ -3,7 +3,7 @@ package model.services.dao;
 import model.Entities.impl.LogLend;
 
 public interface ILogLendDao {
-    void insert(LogLend logLend, Integer idConta);
+    void insert(LogLend logLend);
 
     void update(LogLend logLend);
 
