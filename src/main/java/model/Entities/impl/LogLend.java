@@ -10,10 +10,14 @@ public class LogLend extends Log implements IInterestOperations {
     private Double interest;
     private Integer term;
     private String status;
-    private final Double TAX = 1.05;
+    private Double amount;
 
-    public LogLend(Integer idAccount, Double valueLend, Double interest, Integer term, String status, String InterestType){
-        super(InterestType,valueLend);
+    public LogLend(String interestType, Double valueLend){
+        super(interestType,valueLend);
+    }
+
+    public LogLend(Integer idAccount, Double valueLend, Double interest, Integer term, String status, String interestType){
+        super(interestType,valueLend);
 
         this.idAccount = idAccount;
         this.interest = interest;
@@ -21,26 +25,14 @@ public class LogLend extends Log implements IInterestOperations {
         this.status = status;
     }
 
-    public LogLend(Integer idAccount, Double valueLend, Double interest, Integer term, String status, String InterestType, Date date){
-        super(InterestType,valueLend);
+    public LogLend(Integer idAccount, Double valueLend, Double interest, Integer term, String status, String interestType, Date date, Double amount){
+        super(interestType,valueLend);
 
         this.idAccount = idAccount;
         this.interest = interest;
         this.term = term;
         this.status = status;
-
-        setDate(date);
-    }
-
-    public LogLend(Integer id,Integer idAccount, Double valueLend, Double interest, Integer term, String status, String InterestType, Date date){
-        super(InterestType,valueLend);
-
-        this.setId(id);
-        this.idAccount = idAccount;
-        this.interest = interest;
-        this.term = term;
-        this.status = status;
-
+        this.amount = amount;
         setDate(date);
     }
 
@@ -68,6 +60,7 @@ public class LogLend extends Log implements IInterestOperations {
         this.term = term;
     }
 
+
     public String getStatus() {
         return status;
     }
@@ -76,11 +69,20 @@ public class LogLend extends Log implements IInterestOperations {
         this.status = status;
     }
 
+    public Double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
+
     public void compoundInterest() {
-        setInterest(IInterestOperations.super.compoundInterest(getValue(), term, TAX));
+        setAmount(IInterestOperations.super.compoundInterest(getValue(), term, getInterest()));
     }
 
     public void simpleInterest() {
-        setInterest(IInterestOperations.super.simpleInterest(getValue(), term, TAX));
+        setAmount(IInterestOperations.super.simpleInterest(getValue(), term, getInterest()));
     }
+
 }
