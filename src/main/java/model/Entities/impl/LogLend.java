@@ -2,66 +2,22 @@ package model.Entities.impl;
 
 import model.Entities.IInterestOperations;
 
+import java.util.Date;
 import java.util.Objects;
 
-public class LogLend implements IInterestOperations {
-    private Integer id = null;
-    private Double valueLend;
+public class LogLend extends Log implements IInterestOperations {
+    private Integer idAccount;
     private Double interest;
-    private Integer term;
-    private Double tax;
+    private Integer term; //prazo
+    private final Double TAX = 1.05;
     private String status;
-    private String type;
 
-    public LogLend(Integer id, Double valueLend, Double interest, Integer term, String type) {
-        this.id = id;
-        this.valueLend = valueLend;
-        this.interest = interest;
-        this.term = term;
-        this.type = type;
-    }
-
-    public LogLend(Integer id, Double valueLend, Double interest, Integer term, String status, String type) {
-        this.id = id;
-        this.valueLend = valueLend;
-        this.interest = interest;
+    public LogLend(Integer idAccount, Double valueLend, Double interest, Integer term, String status, String InterestType){
+        super(InterestType,valueLend);
+        this.idAccount = idAccount;
+        this.interest =interest;
         this.term = term;
         this.status = status;
-        this.type = type;
-    }
-    public LogLend(Integer id, Double valueLend, Double interest, Double tax, Integer term, String type) {
-        this.id = id;
-        this.valueLend = valueLend;
-        this.interest = interest;
-        this.tax = tax;
-        this.term = term;
-        this.type = type;
-    }
-
-    public LogLend(Integer id, Double valueLend, Double interest, Double tax,Integer term, String status, String type) {
-        this.id = id;
-        this.valueLend = valueLend;
-        this.interest = interest;
-        this.tax = tax;
-        this.term = term;
-        this.status = status;
-        this.type = type;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Double getValueLend() {
-        return valueLend;
-    }
-
-    public void setValueLend(Double valueLend) {
-        this.valueLend = valueLend;
     }
 
     public Double getInterest() {
@@ -88,42 +44,11 @@ public class LogLend implements IInterestOperations {
         this.status = status;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public void compoundInterest() {
-        setInterest(IInterestOperations.super.compoundInterest(valueLend, term, tax));
+        setInterest(IInterestOperations.super.compoundInterest(getValue(), term, TAX));
     }
 
     public void simpleInterest() {
-        setInterest(IInterestOperations.super.simpleInterest(valueLend, term, tax));
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof LogLend)) return false;
-        LogLend logLend = (LogLend) o;
-        return Objects.equals(getValueLend(), logLend.getValueLend()) && Objects.equals(getInterest(), logLend.getInterest()) && Objects.equals(getTerm(), logLend.getTerm()) && Objects.equals(getStatus(), logLend.getStatus());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getValueLend(), getInterest(), getTerm(), getStatus());
-    }
-
-    @Override
-    public String toString() {
-        return "LogLend{" +
-                "valueLend=" + valueLend +
-                ", interest=" + interest +
-                ", term=" + term +
-                ", status='" + status + '\'' +
-                '}';
+        setInterest(IInterestOperations.super.simpleInterest(getValue(), term, TAX));
     }
 }

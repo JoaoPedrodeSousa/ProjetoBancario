@@ -5,7 +5,7 @@ import model.Entities.ILog;
 import java.util.Date;
 import java.util.Objects;
 
-public abstract class Log implements ILog {
+public abstract class Log {
     private Integer id = null;
 
     private Date date;

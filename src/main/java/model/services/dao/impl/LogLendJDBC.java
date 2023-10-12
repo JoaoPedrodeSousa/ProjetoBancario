@@ -1,5 +1,6 @@
 package model.services.dao.impl;
 
+import model.Entities.impl.Log;
 import model.Entities.impl.LogLend;
 import model.services.dao.ILogLendDao;
 import model.services.database.DB;
@@ -26,7 +27,7 @@ public class LogLendJDBC implements ILogLendDao {
                     "VALUES(?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 
             st.setInt(1,idConta);
-            st.setDouble(2,logLend.getValueLend());
+            st.setDouble(2,logLend.getValue());
             st.setDouble(3,logLend.getInterest());
             st.setDouble(4,logLend.getTerm());
             st.setString(5, logLend.getType());
@@ -77,14 +78,7 @@ public class LogLendJDBC implements ILogLendDao {
             ResultSet rs = st.executeQuery();
 
             if(rs.next()){
-                LogLend logLend = new LogLend(
-                        rs.getInt(1),
-                        rs.getDouble(3),
-                        rs.getDouble(4),
-                        rs.getInt(5),
-                        rs.getString(6),
-                        rs.getString(7)
-                );
+                Log logLend = new LogLend();
                 DB.closeResultSet(rs);
             }
 
