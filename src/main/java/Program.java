@@ -29,12 +29,13 @@ public class Program {
         System.out.println(acc2);
         System.out.println(acc3);
         System.out.println(acc4);
+        System.out.println("\n#####################################################################\n");
 
         LogTransferJDBC logTransferJDBC = new LogTransferJDBC(pg,acc1,acc2);
         LogTransferJDBC logTransferJDBC2 = new LogTransferJDBC(pg,acc3,acc4);
 
-        OperationsAccount.transfer(logTransferJDBC, accountJDBC, acc1, acc2, 300.0);
-        OperationsAccount.transfer(logTransferJDBC2, accountJDBC, acc3, acc4, 300.0);
+        OperationsAccount.transfer(accountJDBC, acc1, acc2, 100.0);
+        OperationsAccount.transfer(accountJDBC, acc3, acc4, 200.0);
 
         System.out.println(acc1);
         System.out.println(acc2);

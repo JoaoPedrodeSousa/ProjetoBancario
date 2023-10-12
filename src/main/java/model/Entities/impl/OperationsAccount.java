@@ -4,6 +4,7 @@ import model.services.dao.AccountDao;
 import model.services.dao.ILogLendDao;
 import model.services.dao.ILogTransferDao;
 import model.services.dao.impl.LogLendJDBC;
+import model.services.dao.impl.LogTransferJDBC;
 import model.services.database.DB;
 import model.services.database.DbException;
 
@@ -14,7 +15,7 @@ public class OperationsAccount {
 
     private static final Connection conn = DB.getConnection();
 
-    public static void transfer(ILogTransferDao logTransactionDao, AccountDao accountDao, Account from, Account to, Double value) {
+    public static void transfer(AccountDao accountDao, Account from, Account to, Double value) {
         if (value > from.getBalance()){
             throw new DbException("Nao eh possivel transerir esse valor, pois eh maior que o saldo disponivel do cliente!");
         }
@@ -29,6 +30,9 @@ public class OperationsAccount {
             accountDao.update(to);
 
             Log log = new LogTransactions(null,"Transferencia",value, from.getId(), to.getId());
+
+            ILogTransferDao logTransactionDao = new LogTransferJDBC(conn,from,to);
+
             logTransactionDao.insert(log);
 
             conn.commit();
