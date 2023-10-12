@@ -10,31 +10,31 @@ public abstract class Log implements ILog {
 
     private Date date;
 
-    private String tipo;
+    private String type;
 
-    private Double valor;
+    private Double value;
 
-    public Log(String tipo, Double valor) {
-        this.tipo = tipo;
-        this.valor = valor;
+    public Log(String type, Double value) {
+        this.type = type;
+        this.value = value;
     }
 
-    public Log(String tipo, Double valor, Date date) {
-        this.tipo = tipo;
-        this.valor = valor;
+    public Log(String type, Double value, Date date) {
+        this.type = type;
+        this.value = value;
         this.date = date;
     }
 
-    public Log(Integer id, String tipo, Double valor) {
+    public Log(Integer id, String type, Double value) {
         this.id = id;
-        this.tipo = tipo;
-        this.valor = valor;
+        this.type = type;
+        this.value = value;
     }
 
-    public Log(Integer id, String tipo, Double valor, Date date) {
+    public Log(Integer id, String type, Double value, Date date) {
         this.id = id;
-        this.tipo = tipo;
-        this.valor = valor;
+        this.type = type;
+        this.value = value;
         this.date = date;
     }
 
@@ -46,12 +46,12 @@ public abstract class Log implements ILog {
         this.id = id;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getType() {
+        return type;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public Date getDate() {
@@ -62,12 +62,12 @@ public abstract class Log implements ILog {
         this.date = date;
     }
 
-    public Double getValor() {
-        return valor;
+    public Double getValue() {
+        return value;
     }
 
-    public void setValor(Double valor) {
-        this.valor = valor;
+    public void setValue(Double value) {
+        this.value = value;
     }
 
     @Override
@@ -75,21 +75,23 @@ public abstract class Log implements ILog {
         if (this == o) return true;
         if (!(o instanceof Log)) return false;
         Log log = (Log) o;
-        return Objects.equals(getId(), log.getId()) && Objects.equals(getTipo(), log.getTipo()) && Objects.equals(getDate(), log.getDate()) && Objects.equals(getValor(), log.getValor());
+        return Objects.equals(getId(), log.getId()) && Objects.equals(getType(),
+                log.getType()) && Objects.equals(getDate(),
+                log.getDate()) && Objects.equals(getValue(), log.getValue());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getTipo(), getDate(), getValor());
+        return Objects.hash(getId(), getType(), getDate(), getValue());
     }
 
     @Override
     public String toString() {
         return "log{" +
                 "id=" + id +
-                ", tipo='" + tipo + '\'' +
+                ", tipo='" + type + '\'' +
                 ", date=" + date +
-                ", valor=" + valor +
+                ", valor=" + value +
                 '}';
     }
 }

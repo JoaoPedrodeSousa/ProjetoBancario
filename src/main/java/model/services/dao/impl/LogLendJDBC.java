@@ -85,6 +85,7 @@ public class LogLendJDBC implements ILogLendDao {
                         rs.getString(6),
                         rs.getString(7)
                 );
+                DB.closeResultSet(rs);
             }
 
             return logLend;

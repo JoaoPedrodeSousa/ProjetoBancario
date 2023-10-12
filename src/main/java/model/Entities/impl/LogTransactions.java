@@ -10,26 +10,26 @@ public class LogTransactions extends Log implements Serializable {
     private Integer originAccount;
     private Integer destinyAccount;
 
-    public LogTransactions(String tipo, Double valor, Integer originAccount, Integer destinyAccount) {
-        super(tipo, valor);
+    public LogTransactions(String type, Double value, Integer originAccount, Integer destinyAccount) {
+        super(type, value);
         this.originAccount = originAccount;
         this.destinyAccount = destinyAccount;
     }
 
-    public LogTransactions(String tipo, Double valor, Date date, Integer originAccount, Integer destinyAccount) {
-        super(tipo, valor, date);
+    public LogTransactions(String type, Double value, Date date, Integer originAccount, Integer destinyAccount) {
+        super(type, value, date);
         this.originAccount = originAccount;
         this.destinyAccount = destinyAccount;
     }
 
-    public LogTransactions(Integer id, String tipo, Double valor, Integer originAccount, Integer destinyAccount) {
-        super(id, tipo, valor);
+    public LogTransactions(Integer id, String type, Double value, Integer originAccount, Integer destinyAccount) {
+        super(id, type, value);
         this.originAccount = originAccount;
         this.destinyAccount = destinyAccount;
     }
 
-    public LogTransactions(Integer id, String tipo, Double valor, Date date, Integer originAccount, Integer destinyAccount) {
-        super(id, tipo, valor, date);
+    public LogTransactions(Integer id, String type, Double value, Date date, Integer originAccount, Integer destinyAccount) {
+        super(id, type, value, date);
         this.originAccount = originAccount;
         this.destinyAccount = destinyAccount;
     }
