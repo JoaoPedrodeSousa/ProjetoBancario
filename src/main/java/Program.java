@@ -32,8 +32,6 @@ public class Program {
         System.out.println(acc4);
         System.out.println("\n#####################################################################\n");
 
-        LogTransferJDBC logTransferJDBC = new LogTransferJDBC(pg,acc1,acc2);
-        LogTransferJDBC logTransferJDBC2 = new LogTransferJDBC(pg,acc3,acc4);
 
         OperationsAccount.transfer(accountJDBC, acc1, acc2, 10.0);
         OperationsAccount.transfer(accountJDBC, acc3, acc4, 20.0);

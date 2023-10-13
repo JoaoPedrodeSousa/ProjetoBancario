@@ -9,7 +9,7 @@ import java.sql.*;
 
 public class AccountJDBC implements AccountDao {
 
-    private Connection conn;
+    private final Connection conn;
 
     public AccountJDBC(Connection conn) {
         this.conn = conn;
@@ -99,56 +99,12 @@ public class AccountJDBC implements AccountDao {
             rs = st.executeQuery();
 
             if (rs.next()) {
-                Account acc = new Account(rs.getInt(1),rs.getString(4), rs.getString(2), rs.getDouble(3));
-                return acc;
-            }
-            return null;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
-            DB.closeStatement(st);
-            DB.closeResultSet(rs);
-        }
-    }
-
-    @Override
-    public Account findByOwner (String owner) {
-        PreparedStatement st = null;
-        ResultSet rs = null;
-
-        try {
-            st = conn.prepareStatement("SELECT * FROM contas WHERE titular = ?");
-
-            st.setString(1,owner);
-            rs = st.executeQuery();
-
-            if (rs.next()) {
-                Account acc = new Account(rs.getString(4), rs.getString(2), rs.getDouble(3));
-                return acc;
-            }
-            return null;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
-            DB.closeStatement(st);
-            DB.closeResultSet(rs);
-        }
-    }
-
-    @Override
-    public Account findByRegister(String register) {
-        PreparedStatement st = null;
-        ResultSet rs = null;
-
-        try {
-            st = conn.prepareStatement("SELECT * FROM contas WHERE titular = ?");
-
-            st.setString(1,register);
-            rs = st.executeQuery();
-
-            if (rs.next()) {
-                Account acc = new Account(rs.getString(4), rs.getString(2), rs.getDouble(3));
-                return acc;
+                return new Account(
+                        rs.getInt(1),
+                        rs.getString(4),
+                        rs.getString(2),
+                        rs.getDouble(3)
+                );
             }
             return null;
         } catch (SQLException e) {

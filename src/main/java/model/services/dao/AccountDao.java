@@ -7,8 +7,4 @@ public interface AccountDao {
     void update(Account obj);
     void deleteById(Integer id);
     Account findById(Integer id);
-    Account findByOwner(String owner);
-    Account findByRegister(String register);
-
-
 }

@@ -16,14 +16,14 @@ public class LogLend extends Log implements IInterestOperations {
         super(interestType,valueLend);
     }
 
-    public LogLend(Integer idAccount, Double valueLend, Double interest, Integer term, String status, String interestType){
-        super(interestType,valueLend);
-
-        setIdAccount(idAccount);
-        this.interest = interest;
-        this.term = term;
-        this.status = status;
-    }
+//    public LogLend(Integer idAccount, Double valueLend, Double interest, Integer term, String status, String interestType){
+//        super(interestType,valueLend);
+//
+//        setIdAccount(idAccount);
+//        this.interest = interest;
+//        this.term = term;
+//        this.status = status;
+//    }
 
     public LogLend(Integer idAccount, Double valueLend, Double interest, Integer term, String status, String interestType, Date date, Double amount){
         super(interestType,valueLend);
