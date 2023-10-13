@@ -81,6 +81,7 @@ public class LogLendJDBC implements ILogLendDao {
 
             if(rs.next()){
                 LogLend logLend = new LogLend(
+                        rs.getInt(1),
                         rs.getInt(2),
                         rs.getDouble(3),
                         rs.getDouble(4),

@@ -6,27 +6,18 @@ import java.util.Date;
 import java.util.Objects;
 
 public class LogLend extends Log implements IInterestOperations {
-
     private Double interest;
     private Integer term;
     private String status;
     private Double amount;
 
-    public LogLend(String interestType, Double valueLend){
-        super(interestType,valueLend);
+
+    public LogLend(Integer id, String type, Double value) {
+        super(id, type, value);
     }
 
-//    public LogLend(Integer idAccount, Double valueLend, Double interest, Integer term, String status, String interestType){
-//        super(interestType,valueLend);
-//
-//        setIdAccount(idAccount);
-//        this.interest = interest;
-//        this.term = term;
-//        this.status = status;
-//    }
-
-    public LogLend(Integer idAccount, Double valueLend, Double interest, Integer term, String status, String interestType, Date date, Double amount){
-        super(interestType,valueLend);
+    public LogLend(Integer id, Integer idAccount, Double valueLend, Double interest, Integer term, String status, String interestType, Date date, Double amount){
+        super(id, interestType, valueLend);
 
         setIdAccount(idAccount);
         this.interest = interest;

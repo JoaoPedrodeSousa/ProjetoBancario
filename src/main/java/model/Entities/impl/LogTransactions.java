@@ -5,69 +5,30 @@ import java.util.Date;
 import java.util.Objects;
 
 public class LogTransactions extends Log {
-    private Integer originAccount;
-    private Integer destinyAccount;
+    private Integer idDestinyAccount;
 
-    public LogTransactions(String type, Double value, Integer originAccount, Integer destinyAccount) {
-        super(type, value);
-        this.originAccount = originAccount;
-        this.destinyAccount = destinyAccount;
-    }
-
-    public LogTransactions(String type, Double value, Date date, Integer originAccount, Integer destinyAccount) {
-        super(type, value, date);
-        this.originAccount = originAccount;
-        this.destinyAccount = destinyAccount;
-    }
-
-    public LogTransactions(Integer id, String type, Double value, Integer originAccount, Integer destinyAccount) {
+    public LogTransactions(Integer id, String type, Double value, Integer idOriginAccount, Integer idDestinyAccount) {
         super(id, type, value);
-        this.originAccount = originAccount;
-        this.destinyAccount = destinyAccount;
+
+        setIdAccount(idOriginAccount);
+
+        this.idDestinyAccount = idDestinyAccount;
     }
 
-    public LogTransactions(Integer id, String type, Double value, Date date, Integer originAccount, Integer destinyAccount) {
+    public LogTransactions(Integer id, String type, Double value, Date date, Integer idOriginAccount, Integer idDestinyAccount) {
         super(id, type, value, date);
-        this.originAccount = originAccount;
-        this.destinyAccount = destinyAccount;
+
+        setIdAccount(idOriginAccount);
+
+        this.idDestinyAccount = idDestinyAccount;
     }
 
-    public Integer getOriginAccount() {
-        return originAccount;
+    public Integer getIdDestinyAccount() {
+        return idDestinyAccount;
     }
 
-    public void setOriginAccount(Integer originAccount) {
-        this.originAccount = originAccount;
-    }
-
-    public Integer getDestinyAccount() {
-        return destinyAccount;
-    }
-
-    public void setDestinyAccount(Integer destinyAccount) {
-        this.destinyAccount = destinyAccount;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof LogTransactions)) return false;
-        if (!super.equals(o)) return false;
-        LogTransactions that = (LogTransactions) o;
-        return Objects.equals(getOriginAccount(), that.getOriginAccount()) && Objects.equals(getDestinyAccount(), that.getDestinyAccount());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), getOriginAccount(), getDestinyAccount());
-    }
-
-    @Override
-    public String toString() {
-        return "logTransactions{" +
-                "originAccount='" + originAccount + '\'' +
-                ", destinyAccount='" + destinyAccount + '\'' +
-                '}';
+    public void setIdDestinyAccount(Integer idDestinyAccount) {
+        this.idDestinyAccount = idDestinyAccount;
     }
 
 
