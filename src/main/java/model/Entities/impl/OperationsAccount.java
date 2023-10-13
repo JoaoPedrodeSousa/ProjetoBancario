@@ -3,6 +3,7 @@ package model.Entities.impl;
 import model.services.dao.AccountDao;
 import model.services.dao.ILogLendDao;
 import model.services.dao.ILogTransferDao;
+import model.services.dao.impl.AccountJDBC;
 import model.services.dao.impl.LogLendJDBC;
 import model.services.dao.impl.LogTransferJDBC;
 import model.services.database.DB;
@@ -46,16 +47,18 @@ public class OperationsAccount {
             }
         }
     }
-    public static void lend(Integer idAccount, Double valueLend, Double interest, Integer term, String status, String InterestType) throws SQLException {
+    public static void lend(Account acc, Double valueLend, Double interest, Integer term, String status, String InterestType) throws SQLException {
         try {
             conn.setAutoCommit(false);
 
                 LogLend logLend = new LogLend(InterestType, valueLend);
 
-                logLend.setIdAccount(idAccount);
+                logLend.setIdAccount(acc.getId());
                 logLend.setTerm(term);
                 logLend.setInterest(interest);
                 logLend.setStatus(status);
+
+            if (InterestType.toLowerCase().equals("compound") || InterestType.toLowerCase().equals("simple")) {
 
                 if (InterestType.toLowerCase().equals("compound")) {
                     logLend.compoundInterest();
@@ -64,13 +67,17 @@ public class OperationsAccount {
                 else {
                     logLend.simpleInterest();
                 }
+                acc.deposit(valueLend);
 
                 ILogLendDao logLendDao = new LogLendJDBC(conn);
-
                 logLendDao.insert(logLend);
 
+                AccountDao accountDao = new AccountJDBC(conn);
+                accountDao.update(acc);
+            }
 
             conn.commit();
+
         }
         catch (SQLException e){
             conn.rollback();

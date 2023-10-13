@@ -21,8 +21,8 @@ public class LogLendJDBC implements ILogLendDao {
         PreparedStatement st = null;
         try {
             st = conn.prepareStatement("INSERT INTO " +
-                    "emprestimos(id_conta, valor_emprestimo, taxa_juros, prazo_meses, status, tipo_juros, amount)" +
-                    "VALUES(?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+                    "emprestimos(id_conta, valor_emprestimo, taxa_juros, prazo_meses, status, tipo_juros, montante,juros)" +
+                    "VALUES(?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 
             st.setInt(1,logLend.getIdAccount());
             st.setDouble(2,logLend.getValue());
@@ -31,6 +31,7 @@ public class LogLendJDBC implements ILogLendDao {
             st.setString(5,logLend.getStatus());
             st.setString(6, logLend.getType());
             st.setDouble(7, logLend.getAmount());
+            st.setDouble(8, (logLend.getAmount() - logLend.getValue()));
 
             int rowsAffected = st.executeUpdate();
 

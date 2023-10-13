@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.Objects;
 
 public class LogLend extends Log implements IInterestOperations {
-    private Integer idAccount;
+
     private Double interest;
     private Integer term;
     private String status;
@@ -19,7 +19,7 @@ public class LogLend extends Log implements IInterestOperations {
     public LogLend(Integer idAccount, Double valueLend, Double interest, Integer term, String status, String interestType){
         super(interestType,valueLend);
 
-        this.idAccount = idAccount;
+        setIdAccount(idAccount);
         this.interest = interest;
         this.term = term;
         this.status = status;
@@ -28,20 +28,12 @@ public class LogLend extends Log implements IInterestOperations {
     public LogLend(Integer idAccount, Double valueLend, Double interest, Integer term, String status, String interestType, Date date, Double amount){
         super(interestType,valueLend);
 
-        this.idAccount = idAccount;
+        setIdAccount(idAccount);
         this.interest = interest;
         this.term = term;
         this.status = status;
         this.amount = amount;
         setDate(date);
-    }
-
-    public Integer getIdAccount() {
-        return idAccount;
-    }
-
-    public void setIdAccount(Integer idAccount) {
-        this.idAccount = idAccount;
     }
 
     public Double getInterest() {
@@ -85,4 +77,27 @@ public class LogLend extends Log implements IInterestOperations {
         setAmount(IInterestOperations.super.simpleInterest(getValue(), term, getInterest()));
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof LogLend)) return false;
+        if (!super.equals(o)) return false;
+        LogLend logLend = (LogLend) o;
+        return Objects.equals(getInterest(), logLend.getInterest()) && Objects.equals(getTerm(), logLend.getTerm()) && Objects.equals(getStatus(), logLend.getStatus()) && Objects.equals(getAmount(), logLend.getAmount());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), getInterest(), getTerm(), getStatus(), getAmount());
+    }
+
+    @Override
+    public String toString() {
+        return "LogLend{" +
+                "interest=" + interest +
+                ", term=" + term +
+                ", status='" + status + '\'' +
+                ", amount=" + amount +
+                '}';
+    }
 }

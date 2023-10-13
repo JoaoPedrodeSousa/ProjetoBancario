@@ -4,9 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-public class LogTransactions extends Log implements Serializable {
-    private static final long serialVersionUID = 1L;
-
+public class LogTransactions extends Log {
     private Integer originAccount;
     private Integer destinyAccount;
 

@@ -2,12 +2,15 @@ package model.Entities.impl;
 
 import model.Entities.ILog;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-public abstract class Log {
+public abstract class Log implements Serializable {
+    private static final long serialVersionUID = 1L;
     private Integer id = null;
 
+    private Integer idAccount;
     private Date date;
 
     private String type;
@@ -44,6 +47,14 @@ public abstract class Log {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getIdAccount() {
+        return idAccount;
+    }
+
+    public void setIdAccount(Integer idAccount) {
+        this.idAccount = idAccount;
     }
 
     public String getType() {
