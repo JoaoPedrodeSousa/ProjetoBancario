@@ -9,24 +9,11 @@ import java.util.Objects;
 public abstract class Log implements Serializable {
     private static final long serialVersionUID = 1L;
     private Integer id = null;
-
     private Integer idAccount;
     private Date date;
-
     private String type;
-
     private Double value;
 
-    public Log(String type, Double value) {
-        this.type = type;
-        this.value = value;
-    }
-
-    public Log(String type, Double value, Date date) {
-        this.type = type;
-        this.value = value;
-        this.date = date;
-    }
 
     public Log(Integer id, String type, Double value) {
         this.id = id;

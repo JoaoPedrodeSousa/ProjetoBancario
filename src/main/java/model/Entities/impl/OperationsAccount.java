@@ -47,20 +47,20 @@ public class OperationsAccount {
             }
         }
     }
-    public static void lend(Account acc, Double valueLend, Double interest, Integer term, String status, String InterestType) throws SQLException {
+    public static void lend(Account acc, Double valueLend, Double interest, Integer term, String status, String interestType) throws SQLException {
         try {
             conn.setAutoCommit(false);
 
-                LogLend logLend = new LogLend(InterestType, valueLend);
+                LogLend logLend = new LogLend(null, interestType, valueLend);
 
                 logLend.setIdAccount(acc.getId());
                 logLend.setTerm(term);
                 logLend.setInterest(interest);
                 logLend.setStatus(status);
 
-            if (InterestType.toLowerCase().equals("compound") || InterestType.toLowerCase().equals("simple")) {
+            if (interestType.toLowerCase().equals("compound") || interestType.toLowerCase().equals("simple")) {
 
-                if (InterestType.toLowerCase().equals("compound")) {
+                if (interestType.toLowerCase().equals("compound")) {
                     logLend.compoundInterest();
                 }
 
@@ -84,4 +84,5 @@ public class OperationsAccount {
             throw new DbException(e.getMessage());
         }
     }
+   // public static void investiment();
 }

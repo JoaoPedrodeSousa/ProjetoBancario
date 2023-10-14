@@ -1,7 +1,6 @@
 import model.Entities.impl.Account;
 import model.Entities.impl.OperationsAccount;
 import model.services.dao.impl.AccountJDBC;
-import model.services.dao.impl.LogTransferJDBC;
 import model.services.database.DB;
 import java.sql.Connection;
 import java.sql.SQLException;
